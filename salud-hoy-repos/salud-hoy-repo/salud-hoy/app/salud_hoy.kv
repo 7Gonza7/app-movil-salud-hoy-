@@ -1,0 +1,446 @@
+#:kivy 2.3.0
+#:import dp kivy.metrics.dp
+
+MDNavigationLayout:
+
+    ScreenManager:
+        id: screen_manager
+
+        MDScreen:
+            name: "main"
+
+            MDBoxLayout:
+                orientation: "vertical"
+
+                # Barra superior personalizada (sin MDToolbar)
+                MDBoxLayout:
+                    id: toolbar
+                    size_hint_y: None
+                    height: "56dp"
+                    padding: "8dp"
+                    spacing: "8dp"
+                    md_bg_color: 0, 0.45, 0.25, 1
+                    MDIconButton:
+                        icon: "menu"
+                        theme_text_color: "Custom"
+                        text_color: 1, 1, 1, 1
+                        on_release: app.open_drawer()
+                    MDLabel:
+                        text: "Salud Hoy"
+                        font_style: "H6"
+                        theme_text_color: "Custom"
+                        text_color: 1, 1, 1, 1
+                        valign: "middle"
+
+                MDBottomNavigation:
+                    id: bottom_nav
+                    text_color_active: 0, 0.6, 0.3, 1
+                    text_color_normal: .45, .45, .45, 1
+
+                    # -------------------- INICIO --------------------
+                    MDBottomNavigationItem:
+                        name: "home"
+                        text: "Inicio"
+                        icon: "home"
+
+                        ScrollView:
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                padding: "16dp"
+                                spacing: "16dp"
+                                size_hint_y: None
+                                height: self.minimum_height
+
+                                # ---- Consejo ----
+                                MDCard:
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    padding: "16dp"
+                                    radius: [16, 16, 16, 16]
+                                    MDBoxLayout:
+                                        orientation: "vertical"
+                                        spacing: "12dp"
+                                        adaptive_height: True
+
+                                        MDLabel:
+                                            text: "Consejo del día"
+                                            font_style: "H6"
+                                            theme_text_color: "Custom"
+                                            text_color: 0, 0, 0, 1
+                                            halign: "left"
+                                        MDSeparator:
+                                            size_hint_y: None
+                                            height: "1dp"
+                                        MDLabel:
+                                            id: lbl_tip
+                                            text: app.consejo_del_dia
+                                            theme_text_color: "Custom"
+                                            text_color: 0, 0, 0, 1
+                                            halign: "left"
+                                            text_size: self.width, None
+                                            size_hint_y: None
+                                            height: self.texture_size[1] + dp(6)
+                                        Widget:
+                                            size_hint_y: None
+                                            height: "4dp"
+                                        MDRaisedButton:
+                                            text: "Consejos"
+                                            md_bg_color: 0, 0.6, 0.3, 1
+                                            pos_hint: {"center_x": 0.5}
+                                            on_release: app.refresh_daily_tip()
+
+                                # ---- Hábitos ----
+                                MDCard:
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    padding: "16dp"
+                                    radius: [16, 16, 16, 16]
+                                    MDBoxLayout:
+                                        orientation: "vertical"
+                                        spacing: "8dp"
+                                        adaptive_height: True
+
+                                        MDLabel:
+                                            text: "Hábitos de hoy"
+                                            font_style: "H6"
+                                            theme_text_color: "Custom"
+                                            text_color: 0, 0, 0, 1
+                                            halign: "left"
+                                        MDSeparator:
+                                            size_hint_y: None
+                                            height: "1dp"
+
+                                        # Fila 1
+                                        MDBoxLayout:
+                                            padding: [6, 6, 6, 6]
+                                            spacing: "12dp"
+                                            size_hint_y: None
+                                            height: "52dp"
+                                            MDCheckbox:
+                                                id: ck_camina
+                                                size_hint: None, None
+                                                size: "30dp", "30dp"
+                                                on_active: app.on_toggle_habit("camina_10", self.active)
+                                            MDLabel:
+                                                text: "Camina 10 minutos"
+                                                theme_text_color: "Custom"
+                                                text_color: 0, 0, 0, 1
+                                                valign: "middle"
+                                                halign: "left"
+                                        MDSeparator:
+                                            size_hint_y: None
+                                            height: "1dp"
+
+                                        # Fila 2
+                                        MDBoxLayout:
+                                            padding: [6, 6, 6, 6]
+                                            spacing: "12dp"
+                                            size_hint_y: None
+                                            height: "52dp"
+                                            MDCheckbox:
+                                                id: ck_estira
+                                                size_hint: None, None
+                                                size: "30dp", "30dp"
+                                                on_active: app.on_toggle_habit("estirate_2", self.active)
+                                            MDLabel:
+                                                text: "Estírate 2 minutos"
+                                                theme_text_color: "Custom"
+                                                text_color: 0, 0, 0, 1
+                                                valign: "middle"
+                                                halign: "left"
+                                        MDSeparator:
+                                            size_hint_y: None
+                                            height: "1dp"
+
+                                        # Fila 3
+                                        MDBoxLayout:
+                                            padding: [6, 6, 6, 6]
+                                            spacing: "12dp"
+                                            size_hint_y: None
+                                            height: "52dp"
+                                            MDCheckbox:
+                                                id: ck_respira
+                                                size_hint: None, None
+                                                size: "30dp", "30dp"
+                                                on_active: app.on_toggle_habit("respira_1", self.active)
+                                            MDLabel:
+                                                text: "Respira 1 minuto"
+                                                theme_text_color: "Custom"
+                                                text_color: 0, 0, 0, 1
+                                                valign: "middle"
+                                                halign: "left"
+                                        MDSeparator:
+                                            size_hint_y: None
+                                            height: "1dp"
+
+                                        # Fila 4
+                                        MDBoxLayout:
+                                            padding: [6, 6, 6, 6]
+                                            spacing: "12dp"
+                                            size_hint_y: None
+                                            height: "52dp"
+                                            MDCheckbox:
+                                                id: ck_postura
+                                                size_hint: None, None
+                                                size: "30dp", "30dp"
+                                                on_active: app.on_toggle_habit("postura_1", self.active)
+                                            MDLabel:
+                                                text: "Postura recta 1 minuto"
+                                                theme_text_color: "Custom"
+                                                text_color: 0, 0, 0, 1
+                                                valign: "middle"
+                                                halign: "left"
+
+                                        Widget:
+                                            size_hint_y: None
+                                            height: "6dp"
+                                        MDLabel:
+                                            id: lbl_today_progress
+                                            text: "Completados hoy: 0/4"
+                                            theme_text_color: "Custom"
+                                            text_color: 0, 0, 0, 1
+                                            halign: "left"
+
+                    # -------------------- MEDALLAS --------------------
+                    MDBottomNavigationItem:
+                        name: "badges"
+                        text: "Medallas"
+                        icon: "trophy-award"
+
+                        ScrollView:
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                padding: "16dp"
+                                spacing: "12dp"
+                                size_hint_y: None
+                                height: self.minimum_height
+
+                                MDLabel:
+                                    text: "Resumen"
+                                    font_style: "H6"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    halign: "left"
+
+                                # GRID responsivo para tres chips
+                                MDGridLayout:
+                                    id: badge_chips
+                                    cols: 3
+                                    adaptive_height: True
+                                    spacing: "8dp"
+                                    padding: "4dp"
+
+                                MDSeparator:
+                                    size_hint_y: None
+                                    height: "1dp"
+
+                                MDLabel:
+                                    text: "Tus medallas"
+                                    font_style: "H6"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    halign: "left"
+
+                                MDGridLayout:
+                                    id: badges_grid
+                                    cols: 2
+                                    adaptive_height: True
+                                    row_default_height: "110dp"
+                                    row_force_default: True
+                                    col_default_width: self.width/2 - dp(12)
+                                    col_force_default: False
+                                    spacing: "12dp"
+                                    padding: "4dp"
+
+                    # -------------------- TIPS --------------------
+                    MDBottomNavigationItem:
+                        name: "tips"
+                        text: "Tips"
+                        icon: "lightbulb-outline"
+
+                        ScrollView:
+                            MDList:
+                                TwoLineIconListItem:
+                                    text: "Camina mientras hablas"
+                                    secondary_text: "por teléfono"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    secondary_theme_text_color: "Custom"
+                                    secondary_text_color: 0, 0, 0, 1
+                                    IconLeftWidget:
+                                        icon: "walk"
+                                TwoLineIconListItem:
+                                    text: "Estiramiento de cuello"
+                                    secondary_text: "por 60 segundos"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    secondary_theme_text_color: "Custom"
+                                    secondary_text_color: 0, 0, 0, 1
+                                    IconLeftWidget:
+                                        icon: "human-handsup"
+                                TwoLineIconListItem:
+                                    text: "Respira 5 veces profundo"
+                                    secondary_text: "cuando te estreses"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    secondary_theme_text_color: "Custom"
+                                    secondary_text_color: 0, 0, 0, 1
+                                    IconLeftWidget:
+                                        icon: "thought-bubble-outline"
+                                TwoLineIconListItem:
+                                    text: "Evita pantallas 30 min"
+                                    secondary_text: "antes de dormir"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    secondary_theme_text_color: "Custom"
+                                    secondary_text_color: 0, 0, 0, 1
+                                    IconLeftWidget:
+                                        icon: "sleep"
+
+                    # -------------------- PERFIL --------------------
+                    MDBottomNavigationItem:
+                        name: "profile"
+                        text: "Perfil"
+                        icon: "account"
+
+                        ScrollView:
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                padding: "16dp"
+                                spacing: "16dp"
+                                size_hint_y: None
+                                height: self.minimum_height
+
+                                MDCard:
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    padding: "20dp"
+                                    radius: [16, 16, 16, 16]
+                                    MDBoxLayout:
+                                        orientation: "vertical"
+                                        spacing: "14dp"
+                                        adaptive_height: True
+
+                                        MDLabel:
+                                            text: "Información"
+                                            font_style: "H6"
+                                            theme_text_color: "Custom"
+                                            text_color: 0, 0, 0, 1
+                                            halign: "left"
+                                        MDSeparator:
+                                            size_hint_y: None
+                                            height: "1dp"
+
+                                        MDGridLayout:
+                                            cols: 2
+                                            adaptive_height: True
+                                            spacing: "10dp"
+                                            padding: "4dp"
+
+                                            MDLabel:
+                                                text: "Nombre:"
+                                                theme_text_color: "Custom"
+                                                text_color: 0, 0, 0, 1
+                                                halign: "left"
+                                                valign: "top"
+                                                text_size: self.width, None
+                                                size_hint_y: None
+                                                height: self.texture_size[1] + dp(6)
+                                            MDLabel:
+                                                id: lbl_name
+                                                text: ""
+                                                theme_text_color: "Custom"
+                                                text_color: 0, 0, 0, 1
+                                                halign: "right"
+                                                valign: "top"
+                                                text_size: self.width, None
+                                                size_hint_y: None
+                                                height: self.texture_size[1] + dp(6)
+
+                                            MDLabel:
+                                                text: "Objetivo:"
+                                                theme_text_color: "Custom"
+                                                text_color: 0, 0, 0, 1
+                                                halign: "left"
+                                                valign: "top"
+                                                text_size: self.width, None
+                                                size_hint_y: None
+                                                height: self.texture_size[1] + dp(6)
+                                            MDLabel:
+                                                id: lbl_goal
+                                                text: ""
+                                                theme_text_color: "Custom"
+                                                text_color: 0, 0, 0, 1
+                                                halign: "right"
+                                                valign: "top"
+                                                text_size: self.width, None
+                                                size_hint_y: None
+                                                height: self.texture_size[1] + dp(6)
+
+                                        Widget:
+                                            size_hint_y: None
+                                            height: "8dp"
+
+                                        MDRaisedButton:
+                                            text: "Editar perfil"
+                                            md_bg_color: 0, 0.6, 0.3, 1
+                                            pos_hint: {"center_x": 0.5}
+                                            on_release: app.open_edit_profile()
+
+    # -------------------- NAV DRAWER --------------------
+    MDNavigationDrawer:
+        id: nav_drawer
+        BoxLayout:
+            orientation: "vertical"
+            spacing: "8dp"
+            padding: "12dp"
+
+            MDLabel:
+                text: "Menú"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            OneLineIconListItem:
+                text: "Inicio"
+                on_release:
+                    app.switch_tab("home")
+                    nav_drawer.set_state("close")
+                IconLeftWidget:
+                    icon: "home"
+
+            OneLineIconListItem:
+                text: "Medallas"
+                on_release:
+                    app.switch_tab("badges")
+                    nav_drawer.set_state("close")
+                IconLeftWidget:
+                    icon: "trophy-award"
+
+            OneLineIconListItem:
+                text: "Tips"
+                on_release:
+                    app.switch_tab("tips")
+                    nav_drawer.set_state("close")
+                IconLeftWidget:
+                    icon: "lightbulb-outline"
+
+            OneLineIconListItem:
+                text: "Perfil"
+                on_release:
+                    app.switch_tab("profile")
+                    nav_drawer.set_state("close")
+                IconLeftWidget:
+                    icon: "account"
+
+            MDSeparator:
+
+            OneLineIconListItem:
+                text: "Restablecer datos"
+                on_release:
+                    app.reset_data()
+                    nav_drawer.set_state("close")
+                IconLeftWidget:
+                    icon: "backup-restore"
