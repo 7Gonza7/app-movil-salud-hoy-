@@ -1,0 +1,1046 @@
+#:kivy 2.3.0
+
+MDNavigationLayout:
+
+    ScreenManager:
+        id: screen_manager
+
+        # ==================== PANTALLA DE LOGIN ====================
+        MDScreen:
+            name: "login"
+            
+            canvas.before:
+                Color:
+                    rgba: 0.91, 0.96, 0.91, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.width, self.height * 0.6
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.x, self.y
+                    size: self.width, self.height * 0.4
+
+            FloatLayout:
+                # Card centrado con diseño moderno y profesional
+                MDCard:
+                    orientation: "vertical"
+                    size_hint: 0.85, None
+                    width: min(dp(350), root.width * 0.85)
+                    height: self.minimum_height
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    padding: dp(20)
+                    spacing: dp(12)
+                    radius: [20, 20, 20, 20]
+                    elevation: 6
+                    shadow_softness: 10
+                    md_bg_color: 1, 1, 1, 1
+
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        spacing: dp(12)
+                        adaptive_height: True
+
+                        # Espaciador superior
+                        Widget:
+                            size_hint_y: None
+                            height: dp(4)
+
+                        # Logo centrado con sombra sutil
+                        MDCard:
+                            size_hint: None, None
+                            size: dp(80), dp(80)
+                            pos_hint: {"center_x": 0.5}
+                            radius: [40, 40, 40, 40]
+                            elevation: 3
+                            md_bg_color: 0.95, 0.98, 0.96, 1
+                            padding: dp(8)
+                            
+                            FitImage:
+                                source: "assets/logo.png"
+                                size_hint: None, None
+                                size: "64dp", "64dp"
+                                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                        Widget:
+                            size_hint_y: None
+                            height: dp(4)
+
+                        # Título "Salud Hoy"
+                        MDLabel:
+                            text: "Salud Hoy"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color: 0.1, 0.37, 0.13, 1
+                            halign: "center"
+                            bold: True
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                        # Subtítulo
+                        MDLabel:
+                            text: "Tu compañero de bienestar"
+                            font_style: "Body2"
+                            theme_text_color: "Custom"
+                            text_color: 0, 0, 0, 0.6
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                        Widget:
+                            size_hint_y: None
+                            height: dp(6)
+
+                        # Contenedor de campos centrados
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: dp(100)
+                            anchor_x: "center"
+                            
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                spacing: dp(10)
+                                size_hint: 0.9, None
+                                height: self.minimum_height
+                                
+                                # Campo de Email mejorado
+                                MDTextField:
+                                    id: login_email
+                                    hint_text: "Correo electrónico"
+                                    icon_left: "email"
+                                    icon_left_color: 0.1, 0.37, 0.13, 1
+                                    mode: "rectangle"
+                                    size_hint_y: None
+                                    height: dp(45)
+                                    font_size: "14sp"
+                                    line_color_focus: 0.1, 0.37, 0.13, 1
+                                    hint_text_color_normal: 0.5, 0.5, 0.5, 1
+
+                                # Campo de Contraseña mejorado
+                                MDTextField:
+                                    id: login_password
+                                    hint_text: "Contraseña"
+                                    icon_left: "lock"
+                                    icon_left_color: 0.1, 0.37, 0.13, 1
+                                    mode: "rectangle"
+                                    password: True
+                                    size_hint_y: None
+                                    height: dp(45)
+                                    font_size: "14sp"
+                                    line_color_focus: 0.1, 0.37, 0.13, 1
+                                    hint_text_color_normal: 0.5, 0.5, 0.5, 1
+
+                        Widget:
+                            size_hint_y: None
+                            height: dp(18)
+
+                        # Botón de Login mejorado
+                        MDRaisedButton:
+                            text: "Iniciar sesión"
+                            md_bg_color: 0.1, 0.37, 0.13, 1
+                            text_color: 1, 1, 1, 1
+                            pos_hint: {"center_x": 0.5}
+                            size_hint_x: 0.6
+                            height: dp(42)
+                            radius: [12, 12, 12, 12]
+                            elevation: 6
+                            font_size: "15sp"
+                            on_release: app.do_login()
+
+                        Widget:
+                            size_hint_y: None
+                            height: dp(16)
+
+                        # Separador visual sutil
+                        Widget:
+                            size_hint_y: None
+                            height: dp(6)
+
+                        # Sección de registro
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            spacing: dp(4)
+                            size_hint_y: None
+                            height: self.minimum_height
+                            
+                            MDLabel:
+                                text: "¿No tienes cuenta?"
+                                font_style: "Body2"
+                                theme_text_color: "Custom"
+                                text_color: 0, 0, 0, 0.5
+                                halign: "center"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                            MDFlatButton:
+                                text: "Crear cuenta"
+                                theme_text_color: "Custom"
+                                text_color: 0.1, 0.37, 0.13, 1
+                                pos_hint: {"center_x": 0.5}
+                                font_size: "15sp"
+                                underline: True
+                                on_release: app.go_to_register()
+
+                        # Espaciador inferior
+                        Widget:
+                            size_hint_y: None
+                            height: dp(4)
+
+        # ==================== PANTALLA DE REGISTRO ====================
+        MDScreen:
+            name: "register"
+            
+            canvas.before:
+                Color:
+                    rgba: 0.91, 0.96, 0.91, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.width, self.height * 0.6
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.x, self.y
+                    size: self.width, self.height * 0.4
+
+            FloatLayout:
+                # Card centrado con diseño moderno y profesional
+                MDCard:
+                    orientation: "vertical"
+                    size_hint: 0.85, None
+                    width: min(dp(350), root.width * 0.85)
+                    height: self.minimum_height
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    padding: dp(20)
+                    spacing: dp(12)
+                    radius: [20, 20, 20, 20]
+                    elevation: 6
+                    shadow_softness: 10
+                    md_bg_color: 1, 1, 1, 1
+
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        spacing: dp(12)
+                        adaptive_height: True
+
+                        # Espaciador superior
+                        Widget:
+                            size_hint_y: None
+                            height: dp(4)
+
+                        # Ícono decorativo con fondo
+                        MDCard:
+                            size_hint: None, None
+                            size: dp(80), dp(80)
+                            pos_hint: {"center_x": 0.5}
+                            radius: [40, 40, 40, 40]
+                            elevation: 3
+                            md_bg_color: 0.95, 0.98, 0.96, 1
+                            padding: dp(8)
+                            
+                            MDIcon:
+                                icon: "account-plus"
+                                theme_text_color: "Custom"
+                                text_color: 0.1, 0.37, 0.13, 1
+                                halign: "center"
+                                font_size: "70sp"
+                                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                        Widget:
+                            size_hint_y: None
+                            height: dp(4)
+
+                        # Título
+                        MDLabel:
+                            text: "Crear Cuenta"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color: 0.1, 0.37, 0.13, 1
+                            halign: "center"
+                            bold: True
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                        # Subtítulo
+                        MDLabel:
+                            text: "Únete a Salud Hoy"
+                            font_style: "Body2"
+                            theme_text_color: "Custom"
+                            text_color: 0, 0, 0, 0.6
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                        Widget:
+                            size_hint_y: None
+                            height: dp(6)
+
+                        # Contenedor de campos centrados
+                        AnchorLayout:
+                            size_hint_y: None
+                            height: dp(155)
+                            anchor_x: "center"
+                            
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                spacing: dp(10)
+                                size_hint: 0.9, None
+                                height: self.minimum_height
+
+                                # Campo de Nombre
+                                MDTextField:
+                                    id: register_name
+                                    hint_text: "Nombre completo"
+                                    icon_left: "account"
+                                    icon_left_color: 0.1, 0.37, 0.13, 1
+                                    mode: "rectangle"
+                                    size_hint_y: None
+                                    height: dp(45)
+                                    font_size: "14sp"
+                                    line_color_focus: 0.1, 0.37, 0.13, 1
+                                    hint_text_color_normal: 0.5, 0.5, 0.5, 1
+
+                                # Campo de Email
+                                MDTextField:
+                                    id: register_email
+                                    hint_text: "Correo electrónico"
+                                    icon_left: "email"
+                                    icon_left_color: 0.1, 0.37, 0.13, 1
+                                    mode: "rectangle"
+                                    size_hint_y: None
+                                    height: dp(45)
+                                    font_size: "14sp"
+                                    line_color_focus: 0.1, 0.37, 0.13, 1
+                                    hint_text_color_normal: 0.5, 0.5, 0.5, 1
+
+                                # Campo de Contraseña
+                                MDTextField:
+                                    id: register_password
+                                    hint_text: "Contraseña (mínimo 6 caracteres)"
+                                    icon_left: "lock"
+                                    icon_left_color: 0.1, 0.37, 0.13, 1
+                                    mode: "rectangle"
+                                    password: True
+                                    size_hint_y: None
+                                    height: dp(45)
+                                    font_size: "14sp"
+                                    line_color_focus: 0.1, 0.37, 0.13, 1
+                                    hint_text_color_normal: 0.5, 0.5, 0.5, 1
+
+                        Widget:
+                            size_hint_y: None
+                            height: dp(18)
+
+                        # Botón de Registro mejorado
+                        MDRaisedButton:
+                            text: "Registrarse"
+                            md_bg_color: 0.1, 0.37, 0.13, 1
+                            text_color: 1, 1, 1, 1
+                            pos_hint: {"center_x": 0.5}
+                            size_hint_x: 0.6
+                            height: dp(42)
+                            radius: [12, 12, 12, 12]
+                            elevation: 6
+                            font_size: "15sp"
+                            on_release: app.do_register()
+
+                        Widget:
+                            size_hint_y: None
+                            height: dp(16)
+
+                        # Separador visual sutil
+                        Widget:
+                            size_hint_y: None
+                            height: dp(6)
+
+                        # Sección de login
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            spacing: dp(4)
+                            size_hint_y: None
+                            height: self.minimum_height
+                            
+                            MDLabel:
+                                text: "¿Ya tienes cuenta?"
+                                font_style: "Body2"
+                                theme_text_color: "Custom"
+                                text_color: 0, 0, 0, 0.5
+                                halign: "center"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                            MDFlatButton:
+                                text: "Iniciar sesión"
+                                theme_text_color: "Custom"
+                                text_color: 0.1, 0.37, 0.13, 1
+                                pos_hint: {"center_x": 0.5}
+                                font_size: "15sp"
+                                underline: True
+                                on_release: app.go_to_login()
+
+                        # Espaciador inferior
+                        Widget:
+                            size_hint_y: None
+                            height: dp(4)
+
+        # ==================== PANTALLA PRINCIPAL ====================
+        MDScreen:
+            name: "main"
+            md_bg_color: 0.96, 0.96, 0.96, 1
+
+            MDBoxLayout:
+                orientation: "vertical"
+
+                MDTopAppBar:
+                    id: toolbar
+                    title: "Salud Hoy"
+                    md_bg_color: 0.2, 0.7, 0.55, 1
+                    elevation: 2
+                    left_action_items: [['menu', lambda x: app.open_drawer()]]
+
+                MDBottomNavigation:
+                    id: bottom_nav
+                    text_color_active: 0.2, 0.7, 0.55, 1
+                    text_color_normal: .45, .45, .45, 1
+                    elevation: 6
+                    md_bg_color: 1, 1, 1, 1
+
+                    MDBottomNavigationItem:
+                        name: "home"
+                        text: "Inicio"
+                        icon: "home"
+                        md_bg_color: 0.96, 0.96, 0.96, 1
+
+                        ScrollView:
+                            do_scroll_x: False
+                            do_scroll_y: True
+                            bar_width: 0
+                            
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                padding: [20, 20, 20, 100]
+                                spacing: "20dp"
+                                size_hint_y: None
+                                height: self.minimum_height
+                                md_bg_color: 0.96, 0.96, 0.96, 1
+
+                                # Card para el consejo del día
+                                MDCard:
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    padding: "20dp"
+                                    radius: [16, 16, 16, 16]
+                                    elevation: 3
+                                    shadow_softness: 8
+                                    md_bg_color: 1, 1, 1, 1
+                                    MDBoxLayout:
+                                        orientation: "vertical"
+                                        spacing: "12dp"
+                                        adaptive_height: True
+
+                                        MDLabel:
+                                            text: "Consejo del día"
+                                            font_style: "H6"
+                                            theme_text_color: "Custom"
+                                            text_color: 0, 0.5, 0.4, 1
+                                            halign: "left"
+                                            bold: True
+                                            size_hint_y: None
+                                            height: self.texture_size[1]
+                                        
+                                        Widget:
+                                            size_hint_y: None
+                                            height: "8dp"
+                                        
+                                        MDLabel:
+                                            id: lbl_tip
+                                            text: app.consejo_del_dia
+                                            theme_text_color: "Custom"
+                                            text_color: 0.2, 0.2, 0.2, 1
+                                            halign: "left"
+                                            font_size: "14sp"
+                                            text_size: self.width, None
+                                            size_hint_y: None
+                                            height: self.texture_size[1]
+                                        
+                                        Widget:
+                                            size_hint_y: None
+                                            height: "12dp"
+                                        
+                                        MDRaisedButton:
+                                            text: "Otro consejo"
+                                            md_bg_color: 0.2, 0.7, 0.55, 1
+                                            pos_hint: {"center_x": 0.5}
+                                            size_hint: 0.7, None
+                                            height: "44dp"
+                                            radius: [22, 22, 22, 22]
+                                            elevation: 2
+                                            on_release: app.refresh_daily_tip()
+
+                                # Card para los hábitos
+                                MDCard:
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    padding: "20dp"
+                                    radius: [16, 16, 16, 16]
+                                    elevation: 3
+                                    shadow_softness: 8
+                                    md_bg_color: 1, 1, 1, 1
+                                    MDBoxLayout:
+                                        orientation: "vertical"
+                                        spacing: "12dp"
+                                        adaptive_height: True
+
+                                        MDLabel:
+                                            text: "✓ Hábitos de hoy"
+                                            font_style: "H6"
+                                            theme_text_color: "Custom"
+                                            text_color: 0, 0.5, 0.4, 1
+                                            halign: "left"
+                                            bold: True
+                                            size_hint_y: None
+                                            height: self.texture_size[1]
+                                        
+                                        Widget:
+                                            size_hint_y: None
+                                            height: "8dp"
+
+                                        # Hábito 1
+                                        MDBoxLayout:
+                                            padding: [4, 8, 4, 8]
+                                            spacing: "12dp"
+                                            size_hint_y: None
+                                            height: "48dp"
+                                            md_bg_color: 0.96, 0.98, 0.97, 1
+                                            radius: [12, 12, 12, 12]
+                                            MDCheckbox:
+                                                id: ck_camina
+                                                size_hint: None, None
+                                                size: "28dp", "28dp"
+                                                pos_hint: {"center_y": 0.5}
+                                                on_active: app.on_toggle_habit("camina_10", self.active)
+                                            MDLabel:
+                                                text: "Camina 10 minutos"
+                                                theme_text_color: "Custom"
+                                                text_color: 0.25, 0.25, 0.25, 1
+                                                font_size: "15sp"
+                                                valign: "middle"
+                                                halign: "left"
+                                                pos_hint: {"center_y": 0.5}
+
+                                        # Hábito 2
+                                        MDBoxLayout:
+                                            padding: [4, 8, 4, 8]
+                                            spacing: "12dp"
+                                            size_hint_y: None
+                                            height: "48dp"
+                                            md_bg_color: 0.96, 0.98, 0.97, 1
+                                            radius: [12, 12, 12, 12]
+                                            MDCheckbox:
+                                                id: ck_estira
+                                                size_hint: None, None
+                                                size: "28dp", "28dp"
+                                                pos_hint: {"center_y": 0.5}
+                                                on_active: app.on_toggle_habit("estirate_2", self.active)
+                                            MDLabel:
+                                                text: "Estírate 2 minutos"
+                                                theme_text_color: "Custom"
+                                                text_color: 0.25, 0.25, 0.25, 1
+                                                font_size: "15sp"
+                                                valign: "middle"
+                                                halign: "left"
+                                                pos_hint: {"center_y": 0.5}
+
+                                        # Hábito 3
+                                        MDBoxLayout:
+                                            padding: [4, 8, 4, 8]
+                                            spacing: "12dp"
+                                            size_hint_y: None
+                                            height: "48dp"
+                                            md_bg_color: 0.96, 0.98, 0.97, 1
+                                            radius: [12, 12, 12, 12]
+                                            MDCheckbox:
+                                                id: ck_respira
+                                                size_hint: None, None
+                                                size: "28dp", "28dp"
+                                                pos_hint: {"center_y": 0.5}
+                                                on_active: app.on_toggle_habit("respira_1", self.active)
+                                            MDLabel:
+                                                text: "Respira 1 minuto"
+                                                theme_text_color: "Custom"
+                                                text_color: 0.25, 0.25, 0.25, 1
+                                                font_size: "15sp"
+                                                valign: "middle"
+                                                halign: "left"
+                                                pos_hint: {"center_y": 0.5}
+
+                                        # Hábito 4
+                                        MDBoxLayout:
+                                            padding: [4, 8, 4, 8]
+                                            spacing: "12dp"
+                                            size_hint_y: None
+                                            height: "48dp"
+                                            md_bg_color: 0.96, 0.98, 0.97, 1
+                                            radius: [12, 12, 12, 12]
+                                            MDCheckbox:
+                                                id: ck_postura
+                                                size_hint: None, None
+                                                size: "28dp", "28dp"
+                                                pos_hint: {"center_y": 0.5}
+                                                on_active: app.on_toggle_habit("postura_1", self.active)
+                                            MDLabel:
+                                                text: "Postura recta 1 minuto"
+                                                theme_text_color: "Custom"
+                                                text_color: 0.25, 0.25, 0.25, 1
+                                                font_size: "15sp"
+                                                valign: "middle"
+                                                halign: "left"
+                                                pos_hint: {"center_y": 0.5}
+
+                                        Widget:
+                                            size_hint_y: None
+                                            height: "8dp"
+                                        
+                                        # Barra de progreso estilizada
+                                        MDCard:
+                                            size_hint_y: None
+                                            height: "56dp"
+                                            padding: "16dp"
+                                            radius: [12, 12, 12, 12]
+                                            md_bg_color: 0.9, 0.97, 0.94, 1
+                                            elevation: 0
+                                            MDLabel:
+                                                id: lbl_today_progress
+                                                text: "Completados hoy: 0/4"
+                                                theme_text_color: "Custom"
+                                                text_color: 0, 0.5, 0.4, 1
+                                                font_size: "14sp"
+                                                halign: "center"
+                                                valign: "middle"
+                                                bold: True
+                                
+                                # Espacio al final para evitar que el último elemento quede pegado al borde
+                                Widget:
+                                    size_hint_y: None
+                                    height: "12dp"
+
+                    MDBottomNavigationItem:
+                        name: "trophies"
+                        text: "Trofeos"
+                        icon: "trophy"
+                        md_bg_color: 0.96, 0.96, 0.96, 1
+
+                        ScrollView:
+                            do_scroll_x: False
+                            do_scroll_y: True
+                            bar_width: 0
+                            
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                padding: [12, 12, 12, 100]
+                                spacing: "10dp"
+                                size_hint_y: None
+                                height: self.minimum_height
+                                md_bg_color: 0.96, 0.96, 0.96, 1
+
+                                MDCard:
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    padding: "12dp"
+                                    radius: [12, 12, 12, 12]
+                                    MDBoxLayout:
+                                        orientation: "vertical"
+                                        spacing: "8dp"
+                                        adaptive_height: True
+
+                                        MDLabel:
+                                            text: "Trofeos"
+                                            font_style: "H6"
+                                            theme_text_color: "Custom"
+                                            text_color: 0, 0, 0, 1
+                                            halign: "left"
+                                        MDSeparator:
+                                            size_hint_y: None
+                                            height: "1dp"
+
+                                        MDBoxLayout:
+                                            id: badge_chips
+                                            spacing: "6dp"
+                                            adaptive_height: True
+
+                                        MDGridLayout:
+                                            id: badges_grid
+                                            cols: 3
+                                            spacing: "8dp"
+                                            adaptive_height: True
+
+                    MDBottomNavigationItem:
+                        name: "tips"
+                        text: "Tips"
+                        icon: "lightbulb-outline"
+                        md_bg_color: 0.96, 0.96, 0.96, 1
+
+                        ScrollView:
+                            do_scroll_x: False
+                            do_scroll_y: True
+                            bar_width: 0
+                            
+                            MDList:
+                                md_bg_color: 0.96, 0.96, 0.96, 1
+                                TwoLineIconListItem:
+                                    text: "Cambia llamadas por caminatas"
+                                    secondary_text: "Muévete durante tus llamadas"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    secondary_theme_text_color: "Custom"
+                                    secondary_text_color: 0, 0, 0, 1
+                                    IconLeftWidget:
+                                        icon: "walk"
+                                        icon_color: 0.2, 0.7, 0.55, 1
+                                        icon_size: "26dp"
+                                TwoLineIconListItem:
+                                    text: "Estiramiento de cuello"
+                                    secondary_text: "por 60 segundos"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    secondary_theme_text_color: "Custom"
+                                    secondary_text_color: 0, 0, 0, 1
+                                    IconLeftWidget:
+                                        icon: "human-handsup"
+                                        icon_color: 0.2, 0.7, 0.55, 1
+                                        icon_size: "26dp"
+                                TwoLineIconListItem:
+                                    text: "Respira 5 veces profundo"
+                                    secondary_text: "cuando te estreses"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    secondary_theme_text_color: "Custom"
+                                    secondary_text_color: 0, 0, 0, 1
+                                    IconLeftWidget:
+                                        icon: "thought-bubble-outline"
+                                        icon_color: 0.2, 0.7, 0.55, 1
+                                        icon_size: "26dp"
+                                TwoLineIconListItem:
+                                    text: "Evita pantallas 30 min"
+                                    secondary_text: "antes de dormir"
+                                    theme_text_color: "Custom"
+                                    text_color: 0, 0, 0, 1
+                                    secondary_theme_text_color: "Custom"
+                                    secondary_text_color: 0, 0, 0, 1
+                                    IconLeftWidget:
+                                        icon: "sleep"
+                                        icon_color: 0.2, 0.7, 0.55, 1
+                                        icon_size: "26dp"
+
+                    MDBottomNavigationItem:
+                        name: "profile"
+                        text: "Perfil"
+                        icon: "account"
+                        md_bg_color: 0.96, 0.96, 0.96, 1
+
+                        AnchorLayout:
+                            anchor_x: "center"
+                            anchor_y: "center"
+                            md_bg_color: 0.96, 0.96, 0.96, 1
+                            
+                            MDCard:
+                                size_hint: 0.9, None
+                                height: self.minimum_height
+                                padding: "16dp"
+                                radius: [16, 16, 16, 16]
+                                elevation: 4
+                                shadow_softness: 8
+                                md_bg_color: 1, 1, 1, 1
+                                
+                                MDBoxLayout:
+                                    orientation: "vertical"
+                                    spacing: "8dp"
+                                    adaptive_height: True
+
+                                    # Título "Información Personal"
+                                    MDLabel:
+                                        text: "Información Personal"
+                                        font_style: "H6"
+                                        theme_text_color: "Custom"
+                                        text_color: 0.1, 0.37, 0.13, 1
+                                        halign: "center"
+                                        bold: True
+                                        size_hint_y: None
+                                        height: self.texture_size[1]
+
+                                    Widget:
+                                        size_hint_y: None
+                                        height: "6dp"
+
+                                    # Ícono de perfil centrado
+                                    AnchorLayout:
+                                        size_hint_y: None
+                                        height: "70dp"
+                                        anchor_x: "center"
+                                        anchor_y: "center"
+                                        
+                                        MDIcon:
+                                            icon: "account-circle"
+                                            theme_text_color: "Custom"
+                                            text_color: 0.1, 0.37, 0.13, 1
+                                            halign: "center"
+                                            size_hint: None, None
+                                            size: "70dp", "70dp"
+                                            font_size: "70sp"
+
+                                    Widget:
+                                        size_hint_y: None
+                                        height: "10dp"
+
+                                    # Separador decorativo
+                                    MDSeparator:
+                                        color: 0.9, 0.9, 0.9, 1
+
+                                    Widget:
+                                        size_hint_y: None
+                                        height: "10dp"
+
+                                    # Campo Nombre
+                                    MDBoxLayout:
+                                        orientation: "vertical"
+                                        spacing: "4dp"
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        
+                                        MDLabel:
+                                            text: "Nombre"
+                                            font_style: "Body2"
+                                            theme_text_color: "Custom"
+                                            text_color: 0.5, 0.5, 0.5, 1
+                                            halign: "center"
+                                            size_hint_y: None
+                                            height: self.texture_size[1]
+                                        
+                                        MDLabel:
+                                            id: lbl_name
+                                            text: "Sin nombre"
+                                            font_style: "Subtitle1"
+                                            theme_text_color: "Custom"
+                                            text_color: 0.1, 0.37, 0.13, 1
+                                            halign: "center"
+                                            size_hint_y: None
+                                            height: self.texture_size[1]
+                                            bold: True
+
+                                    Widget:
+                                        size_hint_y: None
+                                        height: "8dp"
+
+                                    # Campo Objetivo
+                                    MDBoxLayout:
+                                        orientation: "vertical"
+                                        spacing: "4dp"
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        
+                                        MDLabel:
+                                            text: "Objetivo"
+                                            font_style: "Body2"
+                                            theme_text_color: "Custom"
+                                            text_color: 0.5, 0.5, 0.5, 1
+                                            halign: "center"
+                                            size_hint_y: None
+                                            height: self.texture_size[1]
+                                        
+                                        MDLabel:
+                                            id: lbl_goal
+                                            text: "Moverme más"
+                                            font_style: "Subtitle1"
+                                            theme_text_color: "Custom"
+                                            text_color: 0.1, 0.37, 0.13, 1
+                                            halign: "center"
+                                            size_hint_y: None
+                                            height: self.texture_size[1]
+                                            bold: True
+
+                                    Widget:
+                                        size_hint_y: None
+                                        height: "12dp"
+
+                                    # Botón "Editar Perfil"
+                                    MDRaisedButton:
+                                        text: "Editar Perfil"
+                                        md_bg_color: 0.1, 0.37, 0.13, 1
+                                        pos_hint: {"center_x": 0.5}
+                                        size_hint: 0.75, None
+                                        height: "42dp"
+                                        radius: [10, 10, 10, 10]
+                                        elevation: 3
+                                        on_release: app.open_edit_profile()
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        md_bg_color: 0.98, 0.98, 0.98, 1
+        
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 0
+
+            # Encabezado con logo
+            MDCard:
+                size_hint_y: None
+                height: "200dp"
+                padding: "16dp"
+                radius: [0, 0, 16, 16]
+                md_bg_color: 1, 1, 1, 1
+                elevation: 2
+                
+                MDBoxLayout:
+                    orientation: "vertical"
+                    spacing: "12dp"
+                    
+                    Widget:
+                        size_hint_y: None
+                        height: "8dp"
+                    
+                    # Logo centrado
+                    FitImage:
+                        source: "assets/logo.png"
+                        size_hint: None, None
+                        size: "120dp", "120dp"
+                        pos_hint: {"center_x": 0.5}
+                    
+                    # Título de la app
+                    MDLabel:
+                        text: "Salud Hoy"
+                        font_style: "H6"
+                        theme_text_color: "Custom"
+                        text_color: 0.1, 0.37, 0.13, 1
+                        halign: "center"
+                        bold: True
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+            # Espaciador
+            Widget:
+                size_hint_y: None
+                height: "16dp"
+
+            # Contenedor de elementos del menú
+            ScrollView:
+                MDBoxLayout:
+                    orientation: "vertical"
+                    spacing: "8dp"
+                    padding: [16, 0, 16, 16]
+                    size_hint_y: None
+                    height: self.minimum_height
+                    
+                    # Sección principal
+                    MDLabel:
+                        text: "NAVEGACIÓN"
+                        font_style: "Caption"
+                        theme_text_color: "Custom"
+                        text_color: 0.46, 0.46, 0.46, 1
+                        size_hint_y: None
+                        height: "24dp"
+                        padding: [8, 0, 0, 0]
+
+                    OneLineIconListItem:
+                        text: "Inicio"
+                        theme_text_color: "Custom"
+                        text_color: 0.2, 0.2, 0.2, 1
+                        on_release:
+                            app.switch_tab("home")
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "home"
+                            icon_color: 0.2, 0.7, 0.55, 1
+
+                    OneLineIconListItem:
+                        text: "Trofeos"
+                        theme_text_color: "Custom"
+                        text_color: 0.2, 0.2, 0.2, 1
+                        on_release:
+                            app.switch_tab("trophies")
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "trophy"
+                            icon_color: 0.2, 0.7, 0.55, 1
+
+                    OneLineIconListItem:
+                        text: "Tips"
+                        theme_text_color: "Custom"
+                        text_color: 0.2, 0.2, 0.2, 1
+                        on_release:
+                            app.switch_tab("tips")
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "lightbulb-outline"
+                            icon_color: 0.2, 0.7, 0.55, 1
+
+                    OneLineIconListItem:
+                        text: "Perfil"
+                        theme_text_color: "Custom"
+                        text_color: 0.2, 0.2, 0.2, 1
+                        on_release:
+                            app.switch_tab("profile")
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "account"
+                            icon_color: 0.2, 0.7, 0.55, 1
+
+                    Widget:
+                        size_hint_y: None
+                        height: "16dp"
+
+                    MDSeparator:
+                        color: 0.88, 0.88, 0.88, 1
+
+                    Widget:
+                        size_hint_y: None
+                        height: "8dp"
+
+                    # Sección de configuración
+                    MDLabel:
+                        text: "CONFIGURACIÓN"
+                        font_style: "Caption"
+                        theme_text_color: "Custom"
+                        text_color: 0.46, 0.46, 0.46, 1
+                        size_hint_y: None
+                        height: "24dp"
+                        padding: [8, 0, 0, 0]
+
+                    OneLineIconListItem:
+                        text: "Restablecer datos"
+                        theme_text_color: "Custom"
+                        text_color: 0.2, 0.2, 0.2, 1
+                        on_release:
+                            app.reset_data()
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "backup-restore"
+                            icon_color: 0.2, 0.7, 0.55, 1
+
+                    OneLineIconListItem:
+                        text: "Cerrar sesión"
+                        theme_text_color: "Custom"
+                        text_color: 0.2, 0.2, 0.2, 1
+                        on_release:
+                            app.logout()
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "logout"
+                            icon_color: 0.2, 0.7, 0.55, 1
+
+            # Información del pie
+            MDCard:
+                size_hint_y: None
+                height: "60dp"
+                padding: "16dp"
+                radius: [16, 16, 0, 0]
+                md_bg_color: 1, 1, 1, 1
+                elevation: 3
+                
+                MDLabel:
+                    text: "Versión 1.0.0 • Todos los derechos reservados."
+                    font_style: "Caption"
+                    theme_text_color: "Custom"
+                    text_color: 0.46, 0.46, 0.46, 1
+                    halign: "center"
+                    valign: "middle"
+                    size_hint_y: None
+                    height: "28dp"

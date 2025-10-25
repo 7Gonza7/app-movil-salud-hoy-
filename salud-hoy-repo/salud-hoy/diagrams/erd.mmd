@@ -1,0 +1,27 @@
+erDiagram
+    USER_PROFILE ||--o{ DAY : "perfil_unico"
+    DAY ||--o{ DAY_HABIT : "tiene_registros"
+    HABIT ||--o{ DAY_HABIT : "se_registra_en"
+
+    USER_PROFILE {
+      INTEGER id PK "Solo_existe_1"
+      TEXT name "Nombre_del_usuario"
+      TEXT goal "Objetivo_personal"
+      DATETIME created_at "Fecha_de_creacion"
+    }
+
+    HABIT {
+      TEXT key PK "Identificador"
+      TEXT title "Titulo_del_habito"
+      INTEGER is_active "Activo_1_Inactivo_0"
+    }
+
+    DAY {
+      TEXT day_date PK "Formato_YYYY-MM-DD"
+    }
+
+    DAY_HABIT {
+      TEXT day_date FK "Referencia_a_DAY"
+      TEXT habit_key FK "Referencia_a_HABIT"
+      INTEGER done "Completado_1_Pendiente_0"
+    }
