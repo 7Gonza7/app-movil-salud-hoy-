@@ -16,46 +16,46 @@ tests/
 
 ## Archivos de Prueba
 
-### 📄 test_login.py
+###  test_login.py
 Prueba el sistema de autenticación:
-- ✅ Login con credenciales válidas
-- ❌ Login con credenciales incorrectas
-- ❌ Login con usuario inexistente
-- ❌ Login con campos vacíos
-- 🔄 Manejo de mayúsculas/minúsculas en email
-- 🧹 Limpieza de espacios en email
+-  Login con credenciales válidas
+-  Login con credenciales incorrectas
+-  Login con usuario inexistente
+-  Login con campos vacíos
+-  Manejo de mayúsculas/minúsculas en email
+-  Limpieza de espacios en email
 
-### 📄 test_registro.py
+###  test_registro.py
 Valida el registro de nuevos usuarios:
-- ✅ Registro de usuario nuevo exitoso
-- ❌ Prevención de email duplicado
-- ❌ Validación de campos vacíos
-- 🔄 Email case-insensitive
-- 🧹 Limpieza de espacios en email
-- 👥 Registro de múltiples usuarios
+-  Registro de usuario nuevo exitoso
+-  Prevención de email duplicado
+-  Validación de campos vacíos
+-  Email case-insensitive
+-  Limpieza de espacios en email
+-  Registro de múltiples usuarios
 
-### 📄 test_database.py
+###  test_database.py
 Prueba la conexión y operaciones de base de datos:
-- 🔗 Conexión a base de datos
-- 📋 Verificación de esquema (tabla users)
-- 📊 Tablas principales (usuario_perfil, habito, dia, habitos_dia)
-- 🌱 Datos iniciales de hábitos
-- 👤 Perfil de usuario inicial
-- 📅 Operaciones con hábitos del día
-- 🔄 Actualización de perfil
-- 🔄 Reset de datos
+-  Conexión a base de datos
+-  Verificación de esquema (tabla users)
+-  Tablas principales (usuario_perfil, habito, dia, habitos_dia)
+-  Datos iniciales de hábitos
+-  Perfil de usuario inicial
+-  Operaciones con hábitos del día
+-  Actualización de perfil
+-  Reset de datos
 
-### 📄 test_navegacion.py
+###  test_navegacion.py
 Verifica la navegación entre pantallas:
-- 🏠 Carga de pantalla principal
-- 🔄 Navegación login ↔ registro
-- ✅ Login exitoso → pantalla principal
-- ❌ Login fallido → permanece en login
-- ✅ Registro exitoso → pantalla login
-- 🚪 Logout → pantalla login
-- ✅ Validación de campos vacíos
-- ✅ Validación de formato de email
-- ✅ Validación de longitud de contraseña
+-  Carga de pantalla principal
+-  Navegación login ↔ registro
+-  Login exitoso → pantalla principal
+-  Login fallido → permanece en login
+-  Registro exitoso → pantalla login
+-  Logout → pantalla login
+-  Validación de campos vacíos
+-  Validación de formato de email
+-  Validación de longitud de contraseña
 
 ## Configuración
 
@@ -133,11 +133,11 @@ pytest --cov=salud-hoy/app tests/
 ## Cobertura de Pruebas
 
 Las pruebas cubren:
-- ✅ **Autenticación**: Login, registro, validaciones
-- ✅ **Base de Datos**: Conexión, esquema, operaciones CRUD
-- ✅ **Navegación**: Flujo entre pantallas, validaciones de UI
-- ✅ **Sesiones**: Persistencia de sesión
-- ✅ **Validaciones**: Campos vacíos, formatos, duplicados
+-  **Autenticación**: Login, registro, validaciones
+-  **Base de Datos**: Conexión, esquema, operaciones CRUD
+-  **Navegación**: Flujo entre pantallas, validaciones de UI
+-  **Sesiones**: Persistencia de sesión
+-  **Validaciones**: Campos vacíos, formatos, duplicados
 
 ## Notas Técnicas
 
@@ -155,4 +155,5 @@ Las pruebas cubren:
 - unittest.mock (incluido en Python)
 - tempfile (incluido en Python)
 - shutil (incluido en Python)
+
 
