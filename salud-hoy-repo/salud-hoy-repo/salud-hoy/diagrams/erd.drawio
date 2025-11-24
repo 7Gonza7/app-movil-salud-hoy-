@@ -1,0 +1,154 @@
+<mxfile host="65bd71144e">
+    <diagram id="ERD-Salud-Hoy" name="Diagrama ER - Salud Hoy">
+        <mxGraphModel dx="1320" dy="595" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="auth_user" value="auth_user" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="150" width="220" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="auth_id" value="PK  id: INTEGER AUTOINCREMENT" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontStyle=4" vertex="1" parent="auth_user">
+                    <mxGeometry y="30" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="auth_username" value="     username: TEXT (UNIQUE)" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="auth_user">
+                    <mxGeometry y="60" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="auth_email" value="     email: TEXT (UNIQUE)" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="auth_user">
+                    <mxGeometry y="90" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="auth_password" value="     password_hash: TEXT" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="auth_user">
+                    <mxGeometry y="120" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="auth_created" value="     created_at: DATETIME" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="auth_user">
+                    <mxGeometry y="150" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="usuario_perfil" value="usuario_perfil" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="150" width="220" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="perfil_id" value="PK  id: INTEGER" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontStyle=4" vertex="1" parent="usuario_perfil">
+                    <mxGeometry y="30" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="perfil_user_id" value="FK  user_id: INTEGER (UNIQUE)" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontStyle=5" vertex="1" parent="usuario_perfil">
+                    <mxGeometry y="60" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="perfil_name" value="     name: TEXT" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="usuario_perfil">
+                    <mxGeometry y="90" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="perfil_goal" value="     goal: TEXT" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="usuario_perfil">
+                    <mxGeometry y="120" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="sesiones" value="sesiones" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="450" width="220" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="sesiones_day_date" value="PK  day_date: TEXT" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontStyle=4" vertex="1" parent="sesiones">
+                    <mxGeometry y="30" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="sesiones_user_id" value="FK  user_id: INTEGER" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontStyle=5" vertex="1" parent="sesiones">
+                    <mxGeometry y="60" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="sesiones_created" value="     created_at: DATETIME" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="sesiones">
+                    <mxGeometry y="90" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="habito" value="habito" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="650" y="450" width="220" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="habito_key" value="PK  key: TEXT" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontStyle=4" vertex="1" parent="habito">
+                    <mxGeometry y="30" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="habito_title" value="     title: TEXT" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="habito">
+                    <mxGeometry y="60" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="habito_active" value="     is_active: INTEGER" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="habito">
+                    <mxGeometry y="90" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="habitos_dia" value="habitos_dia" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="420" width="220" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="habitos_dia_day" value="PK,FK  day_date: TEXT" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontStyle=5" vertex="1" parent="habitos_dia">
+                    <mxGeometry y="30" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="habitos_dia_habit" value="PK,FK  habit_key: TEXT" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontStyle=5" vertex="1" parent="habitos_dia">
+                    <mxGeometry y="60" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="habitos_dia_done" value="     done: INTEGER" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="habitos_dia">
+                    <mxGeometry y="90" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="habitos_dia_created" value="     created_at: DATETIME" style="text;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="habitos_dia">
+                    <mxGeometry y="120" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel1" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERone;startArrow=ERone;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="auth_user" target="usuario_perfil">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="270" y="240" as="sourcePoint"/>
+                        <mxPoint x="350" y="225" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="card1_1" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="270" y="210" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="card1_2" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="350" y="220" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel2" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startArrow=ERone;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="usuario_perfil" target="sesiones">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="460" y="300" as="sourcePoint"/>
+                        <mxPoint x="160" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="card2_1" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="430" y="310" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="card2_2" value="N" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="160" y="420" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel3" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startArrow=ERone;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="sesiones" target="habitos_dia">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="270" y="510" as="sourcePoint"/>
+                        <mxPoint x="350" y="525" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="card3_1" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="270" y="510" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="card3_2" value="N" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="320" y="500" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel4" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startArrow=ERone;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="habito" target="habitos_dia">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="650" y="510" as="sourcePoint"/>
+                        <mxPoint x="570" y="525" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="card4_1" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="620" y="510" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="card4_2" value="N" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=14;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="570" y="500" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="info_title" value="&lt;h1&gt;Diagrama Entidad-Relación&lt;/h1&gt;&lt;p style=&quot;font-size: 13px;&quot;&gt;&lt;b&gt;Sistema:&lt;/b&gt; Salud Hoy - Seguimiento de Hábitos Saludables&lt;/p&gt;&lt;p style=&quot;font-size: 13px;&quot;&gt;&lt;b&gt;Base de Datos:&lt;/b&gt; SQLite&lt;/p&gt;&lt;p style=&quot;font-size: 13px;&quot;&gt;&lt;b&gt;Tablas:&lt;/b&gt; 5 entidades&lt;/p&gt;&lt;p style=&quot;font-size: 12px;&quot;&gt;• auth_user (autenticación)&lt;br&gt;• usuario_perfil&lt;br&gt;• sesiones (días)&lt;br&gt;• habito (catálogo)&lt;br&gt;• habitos_dia (relación M:N)&lt;/p&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=13;" vertex="1" parent="1">
+                    <mxGeometry x="950" y="20" width="320" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="info_relations" value="&lt;h2 style=&quot;font-size: 14px;&quot;&gt;Relaciones y Cardinalidades&lt;/h2&gt;&lt;p style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;1. auth_user → usuario_perfil&lt;/b&gt;&lt;br&gt;Cardinalidad: &lt;b&gt;1:1&lt;/b&gt;&lt;br&gt;• 1 usuario = 1 perfil&lt;br&gt;• FK: user_id (UNIQUE)&lt;/p&gt;&lt;p style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;2. usuario_perfil → sesiones&lt;/b&gt;&lt;br&gt;Cardinalidad: &lt;b&gt;1:N&lt;/b&gt;&lt;br&gt;• 1 usuario = N sesiones (días)&lt;br&gt;• FK: user_id&lt;/p&gt;&lt;p style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;3. sesiones → habitos_dia&lt;/b&gt;&lt;br&gt;Cardinalidad: &lt;b&gt;1:N&lt;/b&gt;&lt;br&gt;• 1 sesión = N hábitos completados&lt;br&gt;• FK: day_date&lt;/p&gt;&lt;p style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;4. habito → habitos_dia&lt;/b&gt;&lt;br&gt;Cardinalidad: &lt;b&gt;1:N&lt;/b&gt;&lt;br&gt;• 1 hábito = N registros diarios&lt;br&gt;• FK: habit_key&lt;/p&gt;&lt;p style=&quot;font-size: 11px; color: #666;&quot;&gt;&lt;b&gt;Nota:&lt;/b&gt; habitos_dia es tabla de relación M:N&lt;br&gt;entre sesiones y habito&lt;/p&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" vertex="1" parent="1">
+                    <mxGeometry x="950" y="300" width="320" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="info_legend" value="&lt;h2 style=&quot;font-size: 14px;&quot;&gt;Leyenda&lt;/h2&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(218, 232, 252);&quot;&gt;■&lt;/span&gt; Entidades Principales&lt;br&gt;&lt;span style=&quot;background-color: rgb(255, 242, 204);&quot;&gt;■&lt;/span&gt; Tabla de Relación (M:N)&lt;/p&gt;&lt;p&gt;&lt;b&gt;PK&lt;/b&gt; = Primary Key&lt;br&gt;&lt;b&gt;FK&lt;/b&gt; = Foreign Key&lt;br&gt;&lt;b&gt;UNIQUE&lt;/b&gt; = Valor único&lt;/p&gt;&lt;p&gt;&lt;b&gt;1:1&lt;/b&gt; = Uno a Uno&lt;br&gt;&lt;b&gt;1:N&lt;/b&gt; = Uno a Muchos&lt;/p&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" vertex="1" parent="1">
+                    <mxGeometry x="950" y="650" width="320" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_auth" value="&lt;b&gt;Autenticación&lt;/b&gt;&lt;br&gt;• Registro de usuarios&lt;br&gt;• password_hash (SHA-256)&lt;br&gt;• username y email únicos" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="690" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_perfil" value="&lt;b&gt;Perfil de Usuario&lt;/b&gt;&lt;br&gt;• Información personal&lt;br&gt;• Relación 1:1 con auth_user&lt;br&gt;• user_id FK (UNIQUE)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="640" y="670" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_sesiones" value="&lt;b&gt;Sesiones (Días)&lt;/b&gt;&lt;br&gt;• Registro de días activos&lt;br&gt;• Formato: YYYY-MM-DD&lt;br&gt;• Relación 1:N con usuario_perfil" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="580" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_habito" value="&lt;b&gt;Catálogo de Hábitos&lt;/b&gt;&lt;br&gt;• 4 hábitos disponibles&lt;br&gt;• camina_10, estirate_2&lt;br&gt;• respira_1, postura_1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="580" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_habitos_dia" value="&lt;b&gt;Hábitos por Día&lt;/b&gt;&lt;br&gt;• Tabla de relación M:N&lt;br&gt;• PK compuesta:&lt;br&gt;  (day_date, habit_key)&lt;br&gt;• done: 0=pendiente, 1=completado" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="610" width="160" height="90" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
